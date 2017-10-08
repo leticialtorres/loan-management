@@ -1,0 +1,13 @@
+
+version: "2"
+services:
+  mysql:
+    image: "mysql/mysql-server:5.7.18"
+    mem_limit: "512m"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "loan_management"
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "user@123"

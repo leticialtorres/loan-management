@@ -6,6 +6,7 @@ import com.machafer.loadmanagement.model.Customer;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 @Component
 public class CustomerAdapterImpl implements CustomerAdapter {
@@ -72,6 +73,24 @@ public class CustomerAdapterImpl implements CustomerAdapter {
         }
 
         return customerResponse;
-    }    
+    }
+
+    @Override
+    public Iterable<CustomerResponse> customersToCustomersResponse(Iterable<Customer> customers) {
+
+        if (customers == null) {
+
+            return null;
+        }
+
+        ArrayList<CustomerResponse> iterable = new ArrayList<>();
+
+        for (Customer customer : customers) {
+
+            iterable.add(customerToCustomerResponse(customer));
+        }
+
+        return iterable;
+    }
 }
 

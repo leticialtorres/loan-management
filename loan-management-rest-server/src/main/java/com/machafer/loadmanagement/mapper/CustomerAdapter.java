@@ -10,4 +10,6 @@ public interface CustomerAdapter {
 
     CustomerResponse customerToCustomerResponse(Customer customer);
 
+    Iterable<CustomerResponse> customersToCustomersResponse(Iterable<Customer> customers);
+
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/api")
 public class CustomerController {
 
     private CustomerService customerService;
@@ -29,5 +30,13 @@ public class CustomerController {
         CustomerResponse customerResponse = customerAdapter.customerToCustomerResponse(customerService.create(customerAdapter.customerRequestToCustomer(customerRequest)));
 
         return new ResponseEntity(customerResponse, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value="/customers", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    public ResponseEntity<CustomerResponse> getAll(@RequestBody CustomerRequest customerRequest){
+
+        Iterable<CustomerResponse> customersResponse = customerAdapter.customersToCustomersResponse(customerService.getAll());
+
+        return new ResponseEntity(customersResponse, HttpStatus.OK);
     }
 }

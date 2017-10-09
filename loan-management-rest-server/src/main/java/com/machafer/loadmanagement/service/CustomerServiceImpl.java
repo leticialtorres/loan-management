@@ -20,4 +20,9 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer create(Customer customer) {
         return customerRespository.save(customer);
     }
+
+    @Override
+    public Iterable<Customer> getAll() {
+        return customerRespository.findAll();
+    }
 }

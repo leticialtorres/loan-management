@@ -24,7 +24,7 @@ public class CustomerController {
         this.customerAdapter = customerAdapter;
     }
 
-    @RequestMapping(value="/customers", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    @RequestMapping(value="/customers", method = RequestMethod.POST)
     public ResponseEntity<CustomerResponse> create(@RequestBody CustomerRequest customerRequest){
 
         CustomerResponse customerResponse = customerAdapter.customerToCustomerResponse(customerService.create(customerAdapter.customerRequestToCustomer(customerRequest)));
@@ -32,8 +32,8 @@ public class CustomerController {
         return new ResponseEntity(customerResponse, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value="/customers", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-    public ResponseEntity<CustomerResponse> getAll(@RequestBody CustomerRequest customerRequest){
+    @RequestMapping(value="/customers", method = RequestMethod.GET)
+    public ResponseEntity<CustomerResponse> getAll(){
 
         Iterable<CustomerResponse> customersResponse = customerAdapter.customersToCustomersResponse(customerService.getAll());
 
